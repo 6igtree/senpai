@@ -1,5 +1,7 @@
 # senpai 🎓
 
+**English** | [日本語](./README.ja.md)
+
 **Your agent writes the code. You still learn.**
 
 AI agents write more of our code every day, and many of us feel it: we ship faster, but we understand less. senpai is a skill for Claude Code and Codex that turns your agent into the senior engineer next to you. It still does the work at full speed. But for each change, it hands you the one piece that sits right at the edge of your level.
