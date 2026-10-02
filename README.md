@@ -51,6 +51,10 @@ Say `senpai` (or `/senpai` in Claude Code) to start. Say `stop senpai` to stop.
 - **Quiet when it should be.** No lesson for typos, renames, or when you say `just do it` during an incident.
 - **Never slower.** The work itself is never watered down to make it teachable.
 
+## See also
+
+[nit](https://github.com/6igtree/nit): your agent, now an English-speaking teammate. Practice workplace English while you code.
+
 ## License
 
 MIT
