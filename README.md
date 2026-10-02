@@ -2,20 +2,49 @@
 
 **Your agent writes the code. You still learn.**
 
-AI agents write more of our code every day, and many of us feel it: we ship faster, but we understand less. senpai is a skill for Claude Code and Codex that turns your agent into the senior engineer next to you. It still does the work at full speed. After each meaningful change, it adds a 30-second lesson and one question, so you keep growing instead of getting rusty.
+AI agents write more of our code every day, and many of us feel it: we ship faster, but we understand less. senpai is a skill for Claude Code and Codex that turns your agent into the senior engineer next to you. It still does the work at full speed. But for each change, it hands you the one piece that sits right at the edge of your level.
 
 ## What it looks like
 
-You ask the agent to fix a slow page. It fixes it as usual, then ends with:
+You are aiming for mid-level. You ask the agent to speed up a slow page. It writes the change, but leaves one small hole for you:
+
+```python
+def list_orders(db):
+    orders = db.query("SELECT * FROM orders")
+    # TODO(senpai): implement this — mid-level must-know
+    # Load the customers for all orders in one query, not one per order.
+    # Hint: look up "N+1 query problem".
+    raise NotImplementedError
+```
 
 ```
-🎓 Senpai
-The page ran one query per order to load its customer. This is the N+1 query
-problem. I replaced it with a single join in src/orders/list.ts:42.
-❓ If an order has no customer, what does the new query return for that row?
+🎓 Senpai [mid-level must-know]
+Loading one customer per order runs 101 queries for 100 orders.
+Fill in src/orders.py:4 and I'll review it.
 ```
 
-Answer it, and senpai tells you what you got right and what you missed. Ignore it, and it never asks again.
+Fill it in, and senpai reviews it. Say `you do it`, and it fills the hole itself and moves on.
+
+## The ladder
+
+senpai tags every idea in a change by the career level that must know it:
+
+| Level | Must know, for example |
+| --- | --- |
+| junior | Off-by-one, null and empty input, reading an error message |
+| mid | N+1 queries, indexes, caching, what to mock in tests |
+| senior | Race conditions, idempotency, retries and timeouts, safe migrations |
+| staff | API compatibility, consistency vs availability, cost of ownership |
+
+Then it treats each idea by where it sits relative to you:
+
+| The idea is | senpai |
+| --- | --- |
+| Below your level | Just writes it. You already know it. |
+| At your level | Leaves a 1-5 line hole for you to implement. |
+| Above your level | Writes it, then teaches it in three sentences. |
+
+When your holes come back clean a few times in a row, senpai suggests moving up. It never switches on its own. Your level is saved in `~/.senpai/level`.
 
 ## Install
 
@@ -35,20 +64,13 @@ mkdir -p ~/.agents/skills && cp -r /tmp/senpai/skills/senpai ~/.agents/skills/
 
 ## Usage
 
-Say `senpai` (or `/senpai` in Claude Code) to start. Say `stop senpai` to stop.
+Say `senpai` (or `/senpai` in Claude Code) to start. The first time, it asks which level you are aiming for. Switch any time with `senpai junior`, `senpai mid`, `senpai senior`, or `senpai staff`. Say `stop senpai` to stop.
 
-| Level | What you get |
-| --- | --- |
-| `senpai lite` | A lesson only. |
-| `senpai full` | A lesson and one question. Default. |
-| `senpai dojo` | The agent stops before the key lines of a change and asks you to write them. It does the rest and reviews your part. |
+## What it never does
 
-## How it teaches
-
-- **One idea per change.** The one concept that would have let you make the change yourself, not a summary of the diff.
-- **Named concepts.** "This is the N+1 query problem", so you can look it up later.
-- **Never twice.** It remembers what it already taught in the session and goes one level deeper when you answer well.
-- **Quiet when it should be.** No lesson for typos, renames, or when you say `just do it` during an incident.
+- **Never a hole where it hurts.** Auth, payments, deletion, and destructive migrations are always written by the agent, and taught as a lesson instead.
+- **Never more than one hole** per response, so the work keeps moving.
+- **Never during an incident.** Say `just do it` and it stays quiet until the next calm task.
 - **Never slower.** The work itself is never watered down to make it teachable.
 
 ## See also

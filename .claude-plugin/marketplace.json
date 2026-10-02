@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "senpai",
-      "description": "After each change, a 30-second lesson and one question, so you keep your skills while the agent codes.",
+      "description": "Leaves one small implement-this hole at your level in each change, and teaches what is above it. Grow from junior to staff while the agent codes.",
       "source": "./",
       "category": "learning"
     }
