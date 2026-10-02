@@ -1,0 +1,12 @@
+{
+  "name": "senpai",
+  "version": "0.1.0",
+  "description": "Your agent writes the code. You still learn.",
+  "author": {
+    "name": "6igtree",
+    "url": "https://github.com/6igtree"
+  },
+  "homepage": "https://github.com/6igtree/senpai",
+  "repository": "https://github.com/6igtree/senpai",
+  "license": "MIT"
+}
