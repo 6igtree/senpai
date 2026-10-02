@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "senpai",
+  "description": "Your agent writes the code. You still learn.",
+  "owner": {
+    "name": "6igtree",
+    "url": "https://github.com/6igtree"
+  },
+  "plugins": [
+    {
+      "name": "senpai",
+      "description": "After each change, a 30-second lesson and one question, so you keep your skills while the agent codes.",
+      "source": "./",
+      "category": "learning"
+    }
+  ]
+}
